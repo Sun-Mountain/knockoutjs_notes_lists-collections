@@ -57,3 +57,24 @@ ko.applyBindings(new ReservationsViewModel());
 ```
 
 **Note**: `foreach` is part of a family of control flow bindings that includes `foreach`, `if`, `ifnot`, and `with`. 
+
+
+Let's add a button after the `</table>` tag in the HTML document to reserve seats & meals.
+
+#### HTML
+```html
+    <button data-bind="click: addSeat">Reserve</button>
+```
+
+Now we need to add an `addSeat` function so the button *does* something.
+
+#### JavaScript
+```JavaScript
+function ReservationsViewModel() {
+    // ... leave all the rest unchanged ...
+
+    // Operations
+    self.addSeat = function() {
+        self.seats.push(new SeatReservation("", self.availableMeals[0]));
+    }
+```
