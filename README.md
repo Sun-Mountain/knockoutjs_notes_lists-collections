@@ -4,6 +4,7 @@ Create repeating blocks of UI elements.
 
 In this example we'll create a table for seat and meal reservations.
 
+#### HTML
 ```html
 <h2>Your seat reservations</h2>
 
@@ -25,6 +26,7 @@ In this example we'll create a table for seat and meal reservations.
 </table>
 ```
 
+#### JavaScript
 ```JavaScript
 // Class to represent a row in the seat reservations grid
 function SeatReservation(name, initialMeal) {
@@ -53,3 +55,5 @@ function ReservationsViewModel() {
 
 ko.applyBindings(new ReservationsViewModel());
 ```
+
+**Note**: `foreach` is part of a family of control flow bindings that includes `foreach`, `if`, `ifnot`, and `with`. 
