@@ -77,4 +77,21 @@ function ReservationsViewModel() {
     self.addSeat = function() {
         self.seats.push(new SeatReservation("", self.availableMeals[0]));
     }
+}
 ```
+
+But now we need to be able to change existing and additions to the list.
+
+#### HTML
+```HTML
+<tbody data-bind="foreach: seats">
+    <tr>
+        <td><input data-bind="value: name" /></td>
+        <td><select data-bind="options: $root.availableMeals, value: meal, optionsText: 'mealName'"></select></td>
+        <td data-bind="text: meal().price"></td>
+    </tr>    
+</tbody>
+```
+
+This code uses two new bindings, `options` and `optionsText`, which together control both the set of available items in a dropdown list, and which object property (in this case, `mealName`) is used to represent each item on screen.
+
