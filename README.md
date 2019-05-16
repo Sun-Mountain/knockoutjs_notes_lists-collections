@@ -169,3 +169,14 @@ Notice that `seats` and `meal` are both observables.
     Total surcharge: $<span data-bind="text: totalSurcharge().toFixed(2)"></span>
 </h3>
 ```
+
+
+#### Final Thoughts
+
+If you want to add a limit to how many times you can add a reservation all you have to do is add an enable binding:
+
+```JavaScript
+<button data-bind="click: addSeat, enable: seats().length < 5">Reserve another seat</button>
+```
+
+The button becomes disabled when the seat limit is reached. You don't have to write any code to re-enable it when the user removes some seats (cluttering up your "remove" logic), because the expression will automatically be re-evaluated by Knockout when the associated data changes.
