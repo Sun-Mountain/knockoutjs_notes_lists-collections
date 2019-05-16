@@ -120,3 +120,28 @@ Then update the view for the data-bind in the HTML document for price:
 </tr>
 ```
 
+#### Removing Items & Showing Final Surcharge
+It's only logical once you have the ability to add to a list, to be able to remove.
+
+We'll do this by adding a link to each generated item in the table row.
+
+```html
+<tr>
+    <td><input data-bind="value: name" /></td>
+    <td><select data-bind="options: $root.availableMeals, value: meal, optionsText: 'mealName'"></select></td>
+    <td data-bind="text: formattedPrice"></td>
+    <td><a href="#" data-bind="click: $root.removeSeat">Remove</a></td>
+</tr>         
+```
+
+The `$root.` prefix makes Knockout look for a `removeSeat` handler on your top-level viewmodel instead of the `SeatReservation` instance, which is more convenient.
+
+```JavaScript
+function ReservationsViewModel() {
+    // ... leave the rest unchanged ...
+
+    // Operations
+    self.addSeat = function() { /* ... leave unchanged ... */ }
+    self.removeSeat = function(seat) { self.seats.remove(seat) }
+}    
+```
