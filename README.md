@@ -95,4 +95,28 @@ But now we need to be able to change existing and additions to the list.
 
 This code uses two new bindings, `options` and `optionsText`, which together control both the set of available items in a dropdown list, and which object property (in this case, `mealName`) is used to represent each item on screen.
 
-We've got some great OOP going, but now let's add some custom
+We've got some great OOP going, but now let's add some custom formatting for the price by using `ko.computed` (so it will update automatically whenever the meal selection changes).
+
+```JavaScript
+function SeatReservation(name, initialMeal) {
+    var self = this;
+    self.name = name;
+    self.meal = ko.observable(initialMeal);
+
+    self.formattedPrice = ko.computed(function() {
+        var price = self.meal().price;
+        return price ? "$" + price.toFixed(2) : "None";        
+    });
+}
+```
+
+Then update the view for the data-bind in the HTML document for price:
+
+```HTML
+<tr>
+    <td><input data-bind="value: name" /></td>
+    <td><select data-bind="options: $root.availableMeals, value: meal, optionsText: 'mealName'"></select></td>
+    <td data-bind="text: formattedPrice"></td>
+</tr>
+```
+
