@@ -145,3 +145,27 @@ function ReservationsViewModel() {
     self.removeSeat = function(seat) { self.seats.remove(seat) }
 }    
 ```
+
+
+WOOOOOO! Almost done with these notes!
+
+#### Displaying total surcharge
+
+Let's add another `ko.computed` property in the `ReservationsViewModel` AFTER the `seats` `observables`.
+
+```JavaScript
+self.totalSurcharge = ko.computed(function() {
+   var total = 0;
+   for (var i = 0; i < self.seats().length; i++)
+       total += self.seats()[i].meal().price;
+   return total;
+});
+```
+
+Notice that `seats` and `meal` are both observables.
+
+```HTML
+<h3 data-bind="visible: totalSurcharge() > 0">
+    Total surcharge: $<span data-bind="text: totalSurcharge().toFixed(2)"></span>
+</h3>
+```
