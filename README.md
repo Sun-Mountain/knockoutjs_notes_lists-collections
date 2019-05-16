@@ -95,3 +95,4 @@ But now we need to be able to change existing and additions to the list.
 
 This code uses two new bindings, `options` and `optionsText`, which together control both the set of available items in a dropdown list, and which object property (in this case, `mealName`) is used to represent each item on screen.
 
+We've got some great OOP going, but now let's add some custom
